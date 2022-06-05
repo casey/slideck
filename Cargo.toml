@@ -1,7 +1,9 @@
 [package]
+description = "Create an HTML slide deck from Markdown"
+edition = "2021"
+license = "CC0-1.0"
 name = "slidedeck"
 version = "0.0.0"
-edition = "2021"
 
 [dependencies]
 askama = "0.11.1"
