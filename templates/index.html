@@ -9,8 +9,6 @@
     <title>{{ title }}</title>
     {% when None %}
     {% endmatch -%}
-    <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
     <script>
       const SLIDES = {{ slides.len() }};
       let current = 0;
@@ -62,6 +60,8 @@
         z-index: 1;
       }
     </style>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
   </head>
   <body>
     {%- for slide in slides %}
