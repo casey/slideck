@@ -9,12 +9,14 @@
     <title>{{ title }}</title>
     {% when None %}
     {% endmatch -%}
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
     <script>
-      const LAST = {{ slides.len() }};
-      let slide = 0;
+      const SLIDES = {{ slides.len() }};
+      let current = 0;
       window.location.hash = '0';
       document.addEventListener("keydown", function(event) {
-        let next = slide;
+        let next = current;
         switch (event.key) {
           case " ":
           case "ArrowDown":
@@ -28,13 +30,13 @@
             break;
           }
 
-        if (next < 0 || next + 1 > LAST) {
+        if (next < 0 || next + 1 > SLIDES) {
           return;
         }
 
-        slide = next;
+        window.location.hash = next;
 
-        window.location.hash = slide;
+        current = next;
       });
     </script>
     <style>
