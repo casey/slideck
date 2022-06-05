@@ -1,0 +1,9 @@
+[package]
+name = "slidedeck"
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+askama = "0.11.1"
+clap = { version = "3.1.18", features = ["derive"] }
+pulldown-cmark = "0.9.1"
