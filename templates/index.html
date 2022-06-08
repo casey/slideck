@@ -11,31 +11,47 @@
     {% endmatch -%}
     <script>
       const SLIDES = {{ slides.len() }};
-      let current = 0;
-      window.location.hash = '0';
+      let current = parseInt(window.location.hash.substring(1)) || 0;
+      window.location.hash = current;
       document.addEventListener("keydown", function(event) {
-        let next = current;
         switch (event.key) {
           case " ":
           case "ArrowDown":
           case "ArrowRight":
           case "Enter":
-            next += 1;
+            slide(current + 1);
             break;
           case "ArrowLeft":
           case "ArrowUp":
-            next -= 1;
+            slide(current - 1);
             break;
           }
+      });
 
-        if (next < 0 || next + 1 > SLIDES) {
+      function slide(i) {
+        if (i < 0 || i >= SLIDES) {
           return;
         }
 
-        window.location.hash = next;
+        window.location.hash = current = i;
+      }
 
-        current = next;
+      let x;
+
+      document.addEventListener('touchstart', e => {
+        x = e.changedTouches[0].screenX;
       });
+
+      document.addEventListener('touchend', e => {
+        if (e.changedTouches[0].screenX < x) {
+          slide(current + 1);
+        }
+
+        if (e.changedTouches[0].screenX > x) {
+          slide(current - 1);
+        }
+      });
+
     </script>
     <style>
       html {
@@ -46,16 +62,20 @@
 
       section {
         background-color: black;
-        bottom: 2em;
-        left: 2em;
+        padding-left: 2em;
+        padding-right: 2em;
+        bottom: 0em;
+        left: 0em;
         position: absolute;
-        right: 2em;
-        top: 2em;
+        right: 0em;
+        top: 0em;
         z-index: 0;
+        overflow: hidden;
       }
 
       section:target {
         z-index: 1;
+        overflow: auto;
       }
     </style>
     <link rel="stylesheet" href="index.css">
@@ -63,9 +83,7 @@
   </head>
   <body>
     {%- for slide in slides %}
-    <section id="{{ loop.index0 }}">
-      {{ slide|indent(6) }}
-    </section>
+    <section id="{{ loop.index0 }}">{{ slide }}</section>
     {%- endfor %}
   </body>
 </html>
