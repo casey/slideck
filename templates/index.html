@@ -11,7 +11,8 @@
     {% endmatch -%}
     <script>
       const SLIDES = {{ slides.len() }};
-      let current = window.location.hash === '' ? 0 : Number(window.location.hash.substring(1));
+      let current = parseInt(window.location.hash.substring(1)) || 0;
+      window.location.hash = current;
       document.addEventListener("keydown", function(event) {
         let next = current;
         switch (event.key) {
@@ -45,7 +46,8 @@
 
       section {
         background-color: black;
-        padding: 2em;
+        padding-left: 2em;
+        padding-right: 2em;
         bottom: 0em;
         left: 0em;
         position: absolute;
