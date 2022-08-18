@@ -1,14 +1,13 @@
 use {
-  askama::Template,
+  boilerplate::Display,
   clap::Parser as _,
   pulldown_cmark::{Event, HeadingLevel, Options, Parser, Tag},
   std::fs,
   std::path::PathBuf,
 };
 
-#[derive(Template)]
-#[template(path = "index.html", escape = "none")]
-struct Index {
+#[derive(Display)]
+struct IndexHtml {
   title: Option<String>,
   slides: Vec<String>,
 }
@@ -67,9 +66,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     })
     .collect();
 
-  let index = Index { title, slides };
+  let index = IndexHtml { title, slides };
 
-  println!("{}", index.render().unwrap());
+  println!("{}", index);
 
   Ok(())
 }

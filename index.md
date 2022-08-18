@@ -1,6 +1,7 @@
 # Test Slides
 - This is the first item
 - This is the second item
+- This is [a link](https://example.com)
 
 ---
 
