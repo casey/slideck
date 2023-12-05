@@ -1,12 +1,12 @@
 use {
-  boilerplate::Display,
+  boilerplate::Boilerplate,
   clap::Parser as _,
+  html_escaper::Escape,
   pulldown_cmark::{Event, HeadingLevel, Options, Parser, Tag},
-  std::fs,
-  std::path::PathBuf,
+  std::{fs, path::PathBuf},
 };
 
-#[derive(Display)]
+#[derive(Boilerplate)]
 struct IndexHtml {
   title: Option<String>,
   slides: Vec<String>,
