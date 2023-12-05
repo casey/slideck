@@ -9,8 +9,9 @@
     %% }
     <link rel=icon href=favicon.ico>
     <script>
-      const SLIDES = {{ self.slides.len() }};
-      let current = parseInt(window.location.hash.substring(1)) || 0;
+      let slides = {{ self.slides.len() }};
+      let match = /#slide-(\d*)/.exec(window.location.hash);
+      let current = match ? parseInt(match[1]) : 0;
       window.location.hash = `slide-${current}`;
       document.addEventListener("keydown", function(event) {
         switch (event.key) {
@@ -28,7 +29,7 @@
       });
 
       function slide(i) {
-        if (i < 0 || i >= SLIDES) {
+        if (i < 0 || i >= slides) {
           return;
         }
 
@@ -51,7 +52,6 @@
           slide(current - 1);
         }
       });
-
     </script>
     <style>
       html {
@@ -121,5 +121,6 @@
     %% for (i, slide) in self.slides.iter().enumerate() {
     <section id=slide-{{i}}>{{ Trusted(slide) }}</section>
     %% }
+    <section></section>
   </body>
 </html>
