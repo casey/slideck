@@ -2,8 +2,11 @@
 description = "Create an HTML slide deck from Markdown"
 edition = "2021"
 license = "CC0-1.0"
-name = "slidedeck"
+name = "slideck"
 version = "0.0.3"
+homepage = "https://github.com/casey/slideck"
+repository = "https://github.com/casey/slideck"
+autotests = false
 
 [dependencies]
 boilerplate = "1.0.0"
