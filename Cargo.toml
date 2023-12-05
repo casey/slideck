@@ -3,7 +3,7 @@ description = "Create an HTML slide deck from Markdown"
 edition = "2021"
 license = "CC0-1.0"
 name = "slidedeck"
-version = "0.0.2"
+version = "0.0.3"
 
 [dependencies]
 boilerplate = "1.0.0"
