@@ -1,7 +1,7 @@
 use {
   boilerplate::Boilerplate,
   clap::Parser as _,
-  html_escaper::Escape,
+  html_escaper::{Escape, Trusted},
   pulldown_cmark::{Event, HeadingLevel, Options, Parser, Tag},
   std::{error::Error, fs, path::PathBuf},
 };

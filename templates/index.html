@@ -11,7 +11,7 @@
     <script>
       const SLIDES = {{ self.slides.len() }};
       let current = parseInt(window.location.hash.substring(1)) || 0;
-      window.location.hash = current;
+      window.location.hash = `slide-${current}`;
       document.addEventListener("keydown", function(event) {
         switch (event.key) {
           case " ":
@@ -32,7 +32,8 @@
           return;
         }
 
-        window.location.hash = current = i;
+        current = i;
+        window.location.hash = `slide-${current}`;
       }
 
       let x;
@@ -118,7 +119,7 @@
   </head>
   <body>
     %% for (i, slide) in self.slides.iter().enumerate() {
-    <section id={{i}}>{{ slide }}</section>
+    <section id=slide-{{i}}>{{ Trusted(slide) }}</section>
     %% }
   </body>
 </html>
