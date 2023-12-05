@@ -3,7 +3,7 @@ use {
   clap::Parser as _,
   html_escaper::Escape,
   pulldown_cmark::{Event, HeadingLevel, Options, Parser, Tag},
-  std::{fs, path::PathBuf},
+  std::{error::Error, fs, path::PathBuf},
 };
 
 #[derive(Boilerplate)]
@@ -17,7 +17,7 @@ struct Args {
   input: PathBuf,
 }
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() -> Result<(), Box<dyn Error>> {
   let args = Args::parse();
 
   let input = fs::read_to_string(args.input)?;
